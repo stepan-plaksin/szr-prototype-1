@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://dws1dbvh2t71m"]
+[gd_scene load_steps=6 format=3 uid="uid://dws1dbvh2t71m"]
+
+[ext_resource type="Texture2D" uid="uid://cxkh4twnv5xx4" path="res://assets/ship1.png" id="1_s858c"]
+[ext_resource type="Texture2D" uid="uid://hd1gktd13ds1" path="res://assets/ship2.png" id="2_gqg0e"]
+[ext_resource type="Script" path="res://scenes/ship_1.gd" id="2_h62rb"]
+[ext_resource type="Script" path="res://scenes/ship_2.gd" id="3_d28me"]
+[ext_resource type="Texture2D" uid="uid://twikdfy0g17j" path="res://assets/missile.png" id="3_n4iif"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Ship1" type="Sprite2D" parent="."]
+position = Vector2(125, 297)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_s858c")
+script = ExtResource("2_h62rb")
+
+[node name="Missile" type="Sprite2D" parent="Ship1"]
+unique_name_in_owner = true
+position = Vector2(5.99933, -178)
+scale = Vector2(2, 2)
+texture = ExtResource("3_n4iif")
+
+[node name="Ship2" type="Sprite2D" parent="."]
+position = Vector2(1007, 292)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gqg0e")
+script = ExtResource("3_d28me")
