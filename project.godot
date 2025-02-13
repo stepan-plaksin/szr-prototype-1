@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="szr-prototype-1"
-run/main_scene="res://scenes/game-screen.tscn"
+run/main_scene="res://stages/game-screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"

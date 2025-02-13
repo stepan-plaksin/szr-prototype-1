@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bruvb7yxxyb3j"]
+
+[ext_resource type="Script" path="res://entities/ships/enemy_ship/enemy_ship.gd" id="1_uwiyv"]
+[ext_resource type="Texture2D" uid="uid://hd1gktd13ds1" path="res://entities/ships/enemy_ship/ship2.png" id="2_n5bf1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kl08l"]
+radius = 72.0
+height = 180.0
+
+[node name="Ship2" type="CharacterBody2D" groups=["destroy_on_game_over", "enemy"]]
+collision_mask = 2
+script = ExtResource("1_uwiyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_n5bf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kl08l")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -78.0
+offset_top = 78.0
+offset_right = 83.0
+offset_bottom = 105.0

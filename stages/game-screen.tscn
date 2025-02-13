@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://dws1dbvh2t71m"]
+
+[ext_resource type="Script" path="res://stages/game_screen.gd" id="1_3sr4s"]
+[ext_resource type="PackedScene" uid="uid://fxedlq26hhcx" path="res://entities/ships/ship_1/ship_1.tscn" id="1_b70hr"]
+[ext_resource type="PackedScene" uid="uid://bruvb7yxxyb3j" path="res://entities/ships/enemy_ship/enemy_ship.tscn" id="3_hx2ip"]
+[ext_resource type="Script" path="res://stages/spawn_point.gd" id="4_mnhj8"]
+[ext_resource type="PackedScene" uid="uid://cvxlajx7m2pi0" path="res://entities/ships/big_enemy_ship/big_enemy_ship.tscn" id="5_00hg8"]
+[ext_resource type="Script" path="res://stages/fish_gringer.gd" id="6_f6l1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrtis"]
+size = Vector2(321, 670)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_3sr4s")
+
+[node name="Ship1" parent="." instance=ExtResource("1_b70hr")]
+position = Vector2(396, 287)
+parent_node_path = NodePath("..")
+
+[node name="Ship2" parent="." instance=ExtResource("3_hx2ip")]
+position = Vector2(168, 93)
+
+[node name="Ship3" parent="." instance=ExtResource("3_hx2ip")]
+position = Vector2(372, 95)
+
+[node name="SpawnPoint" type="Marker2D" parent="." groups=["destroy_on_game_over"]]
+position = Vector2(1076, 296)
+script = ExtResource("4_mnhj8")
+items = Array[PackedScene]([ExtResource("5_00hg8"), ExtResource("3_hx2ip")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 170.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 42
+text = "0"
+
+[node name="ShipKilledLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1025.0
+offset_top = 9.0
+offset_right = 1142.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+offset_left = 410.0
+offset_top = 310.0
+offset_right = 827.0
+offset_bottom = 377.0
+theme_override_font_sizes/font_size = 50
+text = "Game over"
+horizontal_alignment = 1
+
+[node name="FishGringer" type="Area2D" parent="."]
+script = ExtResource("6_f6l1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishGringer"]
+position = Vector2(-308, 339)
+shape = SubResource("RectangleShape2D_jrtis")
+
+[connection signal="ship_died" from="SpawnPoint" to="." method="_on_spawn_point_ship_died"]
+[connection signal="body_entered" from="FishGringer" to="." method="_on_fish_detector_body_entered"]
+[connection signal="body_entered" from="FishGringer" to="FishGringer" method="_on_body_entered"]

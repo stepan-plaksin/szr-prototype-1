@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://fxedlq26hhcx"]
+
+[ext_resource type="Texture2D" uid="uid://cxkh4twnv5xx4" path="res://entities/ships/ship_1/ship1.png" id="1_55u7j"]
+[ext_resource type="Script" path="res://entities/ships/ship_1/ship_1.gd" id="2_cc7gc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjrhc"]
+radius = 72.0
+height = 190.0
+
+[node name="Ship1" type="StaticBody2D" groups=["destroy_on_game_over"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_cc7gc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -88.0
+offset_top = 77.0
+offset_right = 91.0
+offset_bottom = 111.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_55u7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qjrhc")
